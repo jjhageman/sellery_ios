@@ -14,7 +14,7 @@
 
 - (void)login;
 {
-  [_facebook authorize: [NSArray arrayWithObjects: @"read_stream", @"offline_access", nil]
+  [_facebook authorize: [NSArray arrayWithObjects: @"email", @"read_stream", @"offline_access", nil]
               delegate: self];
 }
 
