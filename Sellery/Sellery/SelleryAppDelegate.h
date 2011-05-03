@@ -21,6 +21,7 @@
   ((userName) ((nonatomic, retain)) ((NSString *))) \
   ((facebook) ((retain)) ((Facebook *))) \
   ((facebookResult) ((retain)) ((NSDictionary *))) \
+  ((downloadingSheet) ((retain)) ((UIActionSheet *))) \
 
 #define SelleryAppDelegateNF \
 

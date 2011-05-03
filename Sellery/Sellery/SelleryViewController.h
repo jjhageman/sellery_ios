@@ -22,8 +22,9 @@
 
 #define SelleryViewControllerNF \
   ((state) ((assign)) ((int))) \
+  ((hasEnteredDescription) ((assign)) ((BOOL))) \
 
-@interface SelleryViewController : UIViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate>
+@interface SelleryViewController : UIViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate, UITextViewDelegate>
 {
   IBOutlet UIView *_ip1;
   IBOutlet UIView *_ip2;
@@ -33,6 +34,8 @@
   IBOutlet UITextField *_email;
   IBOutlet FBLoginButton *_fbLoginButton;
   IBOutlet UIButton *_nextButton;
+  IBOutlet UIButton *_selleryButton;
+  UIImageView *_firstImageView;
   UIButton *_photo;
   UILabel *_price;
   
@@ -41,6 +44,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *photo;
+@property (nonatomic, retain) IBOutlet UIImageView *firstImageView;
 @property (nonatomic, retain) IBOutlet UILabel *price;
 @property (nonatomic, retain) FBLoginButton *fbLoginButton;
 
@@ -50,6 +54,7 @@ A1_PP_PROPS (SelleryViewControllerNF);
 - (IBAction)addPicture: (id)anObject;
 - (IBAction)addPrice: (id)anObject;
 - (IBAction)processToFirstScreen: (id)anObject;
+- (IBAction)processToFirstScreenFromDescription: (id)anObject;
 - (IBAction)processToDescription: (id)anObject;
 - (IBAction)processToFinalScreen: (id)anObject;
 - (IBAction)loginWithFacebook: (id)anObject;

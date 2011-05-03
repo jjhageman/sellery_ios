@@ -6,6 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#include <unistd.h>
 #import "SelleryAppDelegate.h"
 #import "SelleryAppDelegate+Facebook.h"
 #import "SelleryAppDelegate+RESTfull.h"
@@ -29,6 +30,8 @@ static NSString* kAppId = @"104504556303736";
 
 - (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions: (NSDictionary *)launchOptions
 {
+  sleep (3);
+  
   // Override point for customization after application launch.
   A1_NV (SelleryAppCommunicationKit, communicationKit);
   self.communicationKit = communicationKit;

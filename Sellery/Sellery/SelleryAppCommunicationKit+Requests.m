@@ -54,7 +54,9 @@
   NSString *boundary = @"----FOO";
   
   NSURL *url = [NSURL URLWithString:IMAGE_API_ENDPOINT];
-  NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+  NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: url
+                                                     cachePolicy: NSURLRequestReloadIgnoringLocalCacheData
+                                                 timeoutInterval: 60.0f];
   [req setHTTPMethod:@"POST"];
   
   NSString *contentType = [NSString stringWithFormat:@"multipart/form-data, boundary=%@", boundary];
@@ -95,7 +97,9 @@
   A1_DLOG_TAG_BEG;
 
   NSURL *url = [NSURL URLWithString: ITEM_API_ENDPOINT];
-  NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: url];
+  NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: url
+                                                     cachePolicy: NSURLRequestReloadIgnoringLocalCacheData
+                                                 timeoutInterval: 60.0f];
   [req setHTTPMethod: @"POST"];
   
   A1_V (userObjects, A1_ARRAY (token, uid, provider, email));
@@ -128,7 +132,7 @@
   [req setValue:@"application/json" forHTTPHeaderField:@"Accept"];
   [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
   [req setValue: @"json" forHTTPHeaderField: @"Data-Type"];
-  [req setValue:[NSString stringWithFormat:@"%d", [encoded length]] forHTTPHeaderField: @"Content-Length"];
+  [req setValue:[NSString stringWithFormat: @"%d", [encoded length]] forHTTPHeaderField: @"Content-Length"];
 
   [req setHTTPBody: encoded];
   
