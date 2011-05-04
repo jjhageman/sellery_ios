@@ -298,15 +298,14 @@
       if (NSOrderedSame != [text compare: @""
                                  options: NSLiteralSearch])
       {
-        self.salary = A1_STRING_WITH_FORMAT (@"$%@", text);
+        self.salary = A1_STRING_WITH_FORMAT (@"%@", text);
       }
       else
       {
-        self.salary = @"$0";
+        self.salary = @"0";
       }
       A1_AV (price);
-      [price setText: self.salary];
-      
+      [price setText: A1_STRING_WITH_FORMAT (@"$%@", self.salary)];
     }
   }
 

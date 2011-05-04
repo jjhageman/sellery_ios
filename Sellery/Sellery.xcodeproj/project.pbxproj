@@ -490,8 +490,8 @@
 		A7A7892C1366C2C2005DABB2 /* addphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addphoto.png; sourceTree = "<group>"; };
 		A7A7892D1366C2C2005DABB2 /* enterprice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enterprice.png; sourceTree = "<group>"; };
 		A7A7892E1366C2C2005DABB2 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
-		A7A9752613696CD000C42386 /* 3gicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3gicon.png; sourceTree = "<group>"; };
-		A7A9752813696CD900C42386 /* 4gicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4gicon.png; sourceTree = "<group>"; };
+		A7A9752613696CD000C42386 /* 3gicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3gicon.png; path = ../3gicon.png; sourceTree = "<group>"; };
+		A7A9752813696CD900C42386 /* 4gicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 4gicon.png; path = ../4gicon.png; sourceTree = "<group>"; };
 		A7B5D66C136FD57D00E38643 /* btn_big_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_big_black.png; sourceTree = "<group>"; };
 		A7B5D66F136FD58F00E38643 /* btn_small_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_small_black.png; sourceTree = "<group>"; };
 		A7B5D670136FD58F00E38643 /* btn_small_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_small_green.png; sourceTree = "<group>"; };
@@ -515,8 +515,6 @@
 		A799BFAB1361AB0C00918E7B = {
 			isa = PBXGroup;
 			children = (
-				A7A9752813696CD900C42386 /* 4gicon.png */,
-				A7A9752613696CD000C42386 /* 3gicon.png */,
 				A799BFC01361AB0D00918E7B /* Sellery */,
 				A799BFB91361AB0D00918E7B /* Frameworks */,
 				A799BFB71361AB0D00918E7B /* Products */,
@@ -580,6 +578,8 @@
 		A799BFC11361AB0D00918E7B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A7A9752813696CD900C42386 /* 4gicon.png */,
+				A7A9752613696CD000C42386 /* 3gicon.png */,
 				A7497DDE1368B86F00AEDD84 /* endpointad.png */,
 				A7497DD11368B19900AEDD84 /* next1.png */,
 				A7497DD41368B1A400AEDD84 /* next1pressed.png */,
