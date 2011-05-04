@@ -16,6 +16,9 @@
 		A7497DDC1368B1C700AEDD84 /* laststep.png in Resources */ = {isa = PBXBuildFile; fileRef = A7497DDA1368B1C700AEDD84 /* laststep.png */; };
 		A7497DDD1368B1C700AEDD84 /* laststeppressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A7497DDB1368B1C700AEDD84 /* laststeppressed.png */; };
 		A7497DDF1368B86F00AEDD84 /* endpointad.png in Resources */ = {isa = PBXBuildFile; fileRef = A7497DDE1368B86F00AEDD84 /* endpointad.png */; };
+		A74AF7A0137152AD00655A84 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = A74AF79B1371529900655A84 /* UIImage+Alpha.m */; };
+		A74AF7A1137152AD00655A84 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = A74AF79D1371529E00655A84 /* UIImage+Resize.m */; };
+		A74AF7A2137152AD00655A84 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = A74AF79F137152A700655A84 /* UIImage+RoundedCorner.m */; };
 		A799BFBB1361AB0D00918E7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A799BFBA1361AB0D00918E7B /* UIKit.framework */; };
 		A799BFBD1361AB0D00918E7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A799BFBC1361AB0D00918E7B /* Foundation.framework */; };
 		A799BFBF1361AB0D00918E7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A799BFBE1361AB0D00918E7B /* CoreGraphics.framework */; };
@@ -80,6 +83,12 @@
 		A7497DDA1368B1C700AEDD84 /* laststep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laststep.png; sourceTree = "<group>"; };
 		A7497DDB1368B1C700AEDD84 /* laststeppressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laststeppressed.png; sourceTree = "<group>"; };
 		A7497DDE1368B86F00AEDD84 /* endpointad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endpointad.png; sourceTree = "<group>"; };
+		A74AF79A1371529800655A84 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		A74AF79B1371529900655A84 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		A74AF79C1371529A00655A84 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		A74AF79D1371529E00655A84 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		A74AF79E137152A200655A84 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		A74AF79F137152A700655A84 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		A799BFB61361AB0D00918E7B /* Sellery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sellery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A799BFBA1361AB0D00918E7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A799BFBC1361AB0D00918E7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -558,6 +567,12 @@
 				A7A788F71366A7C8005DABB2 /* SelleryAppCommunicationKit+Response.m */,
 				A7A789191366ABD1005DABB2 /* SelleryAppCommunicationKit+Errors.h */,
 				A7A7891A1366ABDC005DABB2 /* SelleryAppCommunicationKit+Errors.m */,
+				A74AF79A1371529800655A84 /* UIImage+Alpha.h */,
+				A74AF79B1371529900655A84 /* UIImage+Alpha.m */,
+				A74AF79C1371529A00655A84 /* UIImage+Resize.h */,
+				A74AF79D1371529E00655A84 /* UIImage+Resize.m */,
+				A74AF79E137152A200655A84 /* UIImage+RoundedCorner.h */,
+				A74AF79F137152A700655A84 /* UIImage+RoundedCorner.m */,
 				A799BFC91361AB0D00918E7B /* SelleryAppDelegate.h */,
 				A799BFCA1361AB0D00918E7B /* SelleryAppDelegate.m */,
 				A799C1821361B46000918E7B /* SelleryAppDelegate+Facebook.h */,
@@ -1475,6 +1490,9 @@
 				A7A7891B1366ABEB005DABB2 /* SelleryAppCommunicationKit+Errors.m in Sources */,
 				A7A7891E1366AE2F005DABB2 /* SelleryAppDelegate+RESTfull.m in Sources */,
 				A7427609136814570087A3FA /* FBLoginButton.m in Sources */,
+				A74AF7A0137152AD00655A84 /* UIImage+Alpha.m in Sources */,
+				A74AF7A1137152AD00655A84 /* UIImage+Resize.m in Sources */,
+				A74AF7A2137152AD00655A84 /* UIImage+RoundedCorner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

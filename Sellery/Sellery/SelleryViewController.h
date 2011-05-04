@@ -58,6 +58,8 @@ A1_PP_PROPS (SelleryViewControllerNF);
 - (IBAction)processToDescription: (id)anObject;
 - (IBAction)processToFinalScreen: (id)anObject;
 - (IBAction)loginWithFacebook: (id)anObject;
+- (IBAction)doneEditing: (id)sender;
+- (IBAction)hideKeypad: (id)sender;
 
 - (void)uploadFinished: (NSDictionary *)response;
 - (void)networkError: (NSError *)error;

@@ -147,6 +147,16 @@
 - (void) request: (FBRequest *)request
 didFailWithError: (NSError *)error;
 {
+  // Something goes wrong
+  A1_AV (viewController);
+  A1_ATV (fbLoginButton, viewController);
+  fbLoginButton.isLoggedIn = NO;
+  [fbLoginButton updateImage];
+  
+  A1_V (userDefaults, A1_USER_DEFAULTS)
+  [userDefaults removeObjectForKey: @"id"];
+  [userDefaults removeObjectForKey: @"accessToken"];
+
   [self.downloadingSheet dismissWithClickedButtonIndex: 0 animated: YES];
   self.downloadingSheet = nil;
   

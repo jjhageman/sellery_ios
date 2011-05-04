@@ -11,6 +11,7 @@
 #import "SelleryAppDelegate+Facebook.h"
 #import "SelleryAppCommunicationKit+Requests.h"
 #import "SelleryAppDelegate+Facebook.h"
+#import "UIImage+Resize.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -25,6 +26,18 @@
 @synthesize firstImageView = _firstImageView;
 
 #pragma mark -
+
+- (IBAction)doneEditing: (id)sender
+{
+  [sender resignFirstResponder];
+}
+
+- (IBAction)hideKeypad: (id)sender;
+{
+  [_textView resignFirstResponder];
+  [_zip resignFirstResponder];
+  [_email resignFirstResponder];
+}
 
 - (void)textViewDidBeginEditing:(UITextView *)textView;
 {
@@ -44,6 +57,8 @@
     [textView setText: @"Please, enter the description"];
     [textView setTextColor: [UIColor grayColor]];
   }
+  
+  [textView resignFirstResponder];
 }
 
 - (IBAction)processToFinalScreen: (id)anObject;
@@ -54,16 +69,16 @@
   
   A1_V (userDefaules, A1_USER_DEFAULTS);
 
-  if (NSOrderedSame == [[_zip text] compare: @""
+  if (/*NSOrderedSame == [[_zip text] compare: @""
                                     options: NSLiteralSearch] ||
       NSOrderedSame == [[_email text] compare: @""
                                     options: NSLiteralSearch] ||
-      ! _hasEnteredDescription ||
+      ! _hasEnteredDescription ||*/
       !_fbLoginButton.isLoggedIn || [userDefaules objectForKey: @"id"] == nil || [userDefaules objectForKey: @"accessToken"] == nil
       )
   {
     A1_CUSTOM_NV (UIAlertView, alertView, initWithTitle: @"Sellery"
-                                                message: @"Please fill all fileds in the form and login with the Facebook to continue."
+                                                message: @"Please login with Facebook to continue."
                                                delegate: self
                                       cancelButtonTitle: nil
                                       otherButtonTitles: @"OK", nil);
@@ -330,7 +345,7 @@
 {
   A1_DLOG_TAG_BEG;
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Please, enter a price"
-                                                      message: @"   "
+                                                      message: @"\n"
                                                      delegate: self
                                             cancelButtonTitle: @"Cancel"
                                             otherButtonTitles: @"OK", nil];
@@ -343,10 +358,10 @@
   tf.keyboardAppearance = UIKeyboardAppearanceAlert;
   tf.autocapitalizationType = UITextAutocapitalizationTypeWords;
   tf.autocorrectionType = UITextAutocorrectionTypeNo;
-  tf.contentVerticalAlignment =
-  UIControlContentVerticalAlignmentCenter;
+  tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
   
 	[alertView show];
+  while (CGRectEqualToRect(alertView.bounds, CGRectZero));
   
   CGRect bounds = alertView.bounds;
   tf.center = CGPointMake(bounds.size.width / 2.0f,
@@ -368,12 +383,13 @@
   CGContextRef context = UIGraphicsGetCurrentContext();
   [UIView beginAnimations: nil
                   context: context];
-  [UIView setAnimationCurve: UIViewAnimationCurveLinear];
+  [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
   [UIView setAnimationDuration: 0.25f];
-  alertView.center = CGPointMake(163.0f, 90.0f);
+  A1_V (pos, alertView.frame.origin);
+  alertView.center = CGPointMake (pos.x, pos.y - 40);
   [UIView commitAnimations];
 #else
-  [alertView setTransform: CGAffineTransformMakeTranslation(0,109)];
+  [alertView setTransform: CGAffineTransformMakeTranslation (0, 0)];
 #endif
   [[alertView viewWithTag: 9999] becomeFirstResponder];
 }
@@ -424,20 +440,45 @@
   A1_DLOG_TAG_END;
 }
 
+- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {  
+  if (!error)
+  {  
+  }
+  else
+  {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Sellery"
+                                                    message: [error localizedDescription]
+                                                   delegate: nil
+                                          cancelButtonTitle: NSLocalizedString (@"OK", @"")
+                                          otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+  }  
+}
+
 - (void)imagePickerController: (UIImagePickerController *)picker 
         didFinishPickingImage: (UIImage *)image
                   editingInfo: (NSDictionary *)editingInfo
 {
-  self.image = image;
+  if (image.size.width > image.size.height)
+  {
+    self.image = [[image resizedImage: CGSizeMake (480, 320)
+                 interpolationQuality: kCGInterpolationMedium] roundedCornerImage: 8 borderSize: 8];
+  }
+  else
+  {
+    self.image = [[image resizedImage: CGSizeMake (320, 480)
+                interpolationQuality: kCGInterpolationMedium] roundedCornerImage: 8 borderSize: 8];
+  }
   
-#if 0
-  A1_AV (photo);
-  [photo setImage: image
-         forState: UIControlStateNormal];
-#else
+  A1_ATV (sourceType, picker);
+  if (UIImagePickerControllerSourceTypePhotoLibrary != sourceType)
+  {
+    UIImageWriteToSavedPhotosAlbum (image, self, @selector (imageSavedToPhotosAlbum: didFinishSavingWithError: contextInfo:), self);
+  }
+  
   A1_AV (firstImageView);
-  [firstImageView setImage: image];
-#endif
+  [firstImageView setImage: self.image];
 
   [picker dismissModalViewControllerAnimated: YES];
 }

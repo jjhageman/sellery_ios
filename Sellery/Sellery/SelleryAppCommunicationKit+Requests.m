@@ -49,7 +49,7 @@
   
   A1_CHECK (image);
   
-  A1_V (imageData, UIImagePNGRepresentation (image));
+  A1_V (imageData, UIImageJPEGRepresentation (image, 0.7));
   
   NSString *boundary = @"----FOO";
   
@@ -68,8 +68,8 @@
   [postBody appendData:[@"Content-Disposition: form-data; name= \"some_name\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:[@"some_value" dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-  [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", @"test.png"] dataUsingEncoding:NSUTF8StringEncoding]];
-  [postBody appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", @"test.jpeg"] dataUsingEncoding:NSUTF8StringEncoding]];
+  [postBody appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:imageData];
   [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:[@"Content-Disposition: form-data; name= \"some_other_name\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
