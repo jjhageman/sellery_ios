@@ -16,5 +16,6 @@
 
 - (void)login;
 - (void)logout;
+- (BOOL)tokenExpired;
 
 @end

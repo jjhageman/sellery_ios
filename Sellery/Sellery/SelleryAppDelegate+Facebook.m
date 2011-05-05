@@ -23,6 +23,27 @@
   [_facebook logout: self];
 }
 
+- (BOOL)tokenExpired;
+{
+  A1_V (userDefaults, A1_USER_DEFAULTS);
+  A1_V (expirationDate, [userDefaults objectForKey: @"expirationDate"]);
+  
+  if (!expirationDate)
+  {
+    return YES;
+  }
+  
+  A1_ATV (date, NSDate);
+  A1_NV (NSDateFormatter, dateFormat);
+  
+  if (![[dateFormat dateFromString: [dateFormat stringFromDate: expirationDate]] laterDate: date] == NSOrderedDescending)
+  {
+    return NO;
+  }
+  
+  return YES;
+}
+
 /**
  * Called when the user successfully logged in.
  */

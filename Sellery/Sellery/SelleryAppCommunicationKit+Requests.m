@@ -116,9 +116,8 @@
 #else
   A1_V (locationObjects, A1_ARRAY (@"0.0", @"0.0"));
   A1_V (locationKeys, A1_ARRAY (@"lat", @"lng"));
-  A1_V (locationCollection, A1_DICTIONARY_WITH_OBJECTS_FOR_KEYS (locationObjects, locationKeys));
-  A1_V (itemObjects, A1_ARRAY (title, description, price, locationCollection));
-  A1_V (itemKeys, A1_ARRAY (@"title", @"description", @"price", @"location"));
+  A1_V (itemObjects, A1_ARRAY (title, description, price));
+  A1_V (itemKeys, A1_ARRAY (@"title", @"description", @"price"));
 #endif
   A1_V (itemObjectImage1, A1_ARRAY (image_id));
   A1_V (itemObjectKeys1, A1_ARRAY (@"image_id"));
@@ -128,11 +127,13 @@
 
   A1_V (user, A1_DICTIONARY_WITH_OBJECTS_FOR_KEYS (userObjects, userKeys));
   A1_V (item, A1_DICTIONARY_WITH_OBJECTS_FOR_KEYS (itemObjects, itemKeys));
+  A1_V (location, A1_DICTIONARY_WITH_OBJECTS_FOR_KEYS (locationObjects, locationKeys));
   A1_V (images, A1_DICTIONARY_WITH_OBJECTS_FOR_KEYS (itemImage1, itemKeys1));
   
   A1_NV (NSMutableDictionary, post); // huh!
 
   [post setObject: user forKey: @"user"];
+  [post setObject: location forKey: @"location"];
   [post setObject: item forKey: @"item"];
   [post setObject: images forKey: @"item_images"];
   

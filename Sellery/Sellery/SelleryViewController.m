@@ -217,6 +217,14 @@
 
 - (void)moveToIp2;
 {
+  A1_V (appDelegate, A1_APP_DELEGATE);
+  A1_ATV (tokenExpired, appDelegate);
+  
+  if (tokenExpired)
+  {
+    _fbLoginButton.isLoggedIn = NO;
+  }
+  
   A1_V (userDefaults, A1_USER_DEFAULTS);
   
   _state = 1;
