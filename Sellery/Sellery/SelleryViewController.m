@@ -126,14 +126,14 @@
       description = A1_STRING_WITH_STRING (text);
     }
     
-    [communicationKit requestItemUpload: [_email text]
+    [communicationKit requestItemUpload: nil == [_email text] ? @"" : [_email text]
                                provider: @"facebook"
                                     uid: [userDefaules objectForKey: @"id"]
                                   token: [userDefaules objectForKey: @"accessToken"]
                                   title: @"Sent from my iPhone"
                             description: description
                                   price: self.salary
-                                zipcode: [_zip text]
+                                zipcode: nil == [_zip text] ? @"" : [_zip text]
                                image_id: [image objectForKey: @"id"]
                             contextInfo: self];
 #else
@@ -479,6 +479,7 @@
   }  
 }
 
+#if 0
 - (void)imagePickerController: (UIImagePickerController *)picker 
         didFinishPickingImage: (UIImage *)image
                   editingInfo: (NSDictionary *)editingInfo
@@ -503,11 +504,42 @@
   }
   
   [_firstImageView setImage: self.image];
-  [_photo setImage: self.image
+  [_photo setImage: nil
           forState: UIControlStateHighlighted];
 
   [picker dismissModalViewControllerAnimated: YES];
 }
+#else
+- (void)imagePickerController: (UIImagePickerController *)picker didFinishPickingMediaWithInfo: (NSDictionary *)info;
+{
+  A1_DLOG (@"%@", info);
+  
+  UIImage *image = [info objectForKey: UIImagePickerControllerOriginalImage];
+  
+  if (image.size.width > image.size.height)
+  {
+    self.image = [[image resizedImage: CGSizeMake (480, 320)
+                 interpolationQuality: kCGInterpolationMedium] roundedCornerImage: 8 borderSize: 8];
+  }
+  else
+  {
+    self.image = [[image resizedImage: CGSizeMake (320, 480)
+                 interpolationQuality: kCGInterpolationMedium] roundedCornerImage: 8 borderSize: 8];
+  }
+  
+  A1_ATV (sourceType, picker);
+  if (UIImagePickerControllerSourceTypePhotoLibrary != sourceType)
+  {
+    UIImageWriteToSavedPhotosAlbum (image, self, @selector (imageSavedToPhotosAlbum: didFinishSavingWithError: contextInfo:), self);
+  }
+  
+  [_firstImageView setImage: self.image];
+  [_photo setImage: nil
+          forState: UIControlStateHighlighted];
+  
+  [picker dismissModalViewControllerAnimated: YES];
+}
+#endif
 
 - (void)imagePickerControllerDidCancel: (UIImagePickerController *)picker
 {
