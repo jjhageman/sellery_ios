@@ -24,6 +24,7 @@
   ((downloadingSheet) ((retain)) ((UIActionSheet *))) \
 
 #define SelleryAppDelegateNF \
+  ((shoutdownDate) ((assign)) ((NSTimeInterval))) \
 
 @interface SelleryAppDelegate : NSObject <UIApplicationDelegate, SelleryAppRESTfulDelegate>
 {

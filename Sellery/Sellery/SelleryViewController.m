@@ -42,7 +42,12 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView;
 {
   _hasEnteredDescription = YES;
-  [textView setText: @""];
+  A1_ATV (text, textView);
+  if (NSOrderedSame == [text compare: @"Please, enter the description"
+                             options: NSLiteralSearch])
+  {
+    [textView setText: @""];
+  }
   [textView setTextColor: [UIColor blackColor]];
 }
 
@@ -69,13 +74,9 @@
   
   A1_V (userDefaules, A1_USER_DEFAULTS);
 
-  if (/*NSOrderedSame == [[_zip text] compare: @""
-                                    options: NSLiteralSearch] ||
-      NSOrderedSame == [[_email text] compare: @""
-                                    options: NSLiteralSearch] ||
-      ! _hasEnteredDescription ||*/
-      !_fbLoginButton.isLoggedIn || [userDefaules objectForKey: @"id"] == nil || [userDefaules objectForKey: @"accessToken"] == nil
-      )
+  if (!_fbLoginButton.isLoggedIn ||
+      [userDefaules objectForKey: @"id"] == nil ||
+      [userDefaules objectForKey: @"accessToken"] == nil)
   {
     A1_CUSTOM_NV (UIAlertView, alertView, initWithTitle: @"Sellery"
                                                 message: @"Please login with Facebook to continue."
@@ -111,16 +112,26 @@
 #if 1
     A1_V (appDelegate, A1_APP_DELEGATE);
     A1_ATV (communicationKit, appDelegate);
-//    A1_ATV (facebookResult, appDelegate);
-//    A1_ATV (facebook, appDelegate);
     A1_V (image, [_imageUploadResponse objectForKey: @"image"]);
 
+    NSString *description = nil;
+    A1_ATV (text, _textView);
+    if (NSOrderedSame == [text compare: @"Please, enter the description"
+                               options: NSOrderedSame])
+    {
+      description = @"";
+    }
+    else
+    {
+      description = A1_STRING_WITH_STRING (text);
+    }
+    
     [communicationKit requestItemUpload: [_email text]
                                provider: @"facebook"
                                     uid: [userDefaules objectForKey: @"id"]
                                   token: [userDefaules objectForKey: @"accessToken"]
                                   title: @"Sent from my iPhone"
-                            description: [_textView text]
+                            description: description
                                   price: self.salary
                                 zipcode: [_zip text]
                                image_id: [image objectForKey: @"id"]
@@ -157,7 +168,10 @@
   self.imageUploadResponse = nil;
   self.itemUploadResponse = nil;
   [_firstImageView setImage: [UIImage imageNamed: @"addphoto.png"]];
-  [_price setText: @""];
+  [_photo setImage: [UIImage imageNamed: @"addphoto_pressed.png"]
+          forState: UIControlStateHighlighted];
+  [_price setText: @"Price"];
+  [_price setTextColor: [UIColor lightGrayColor]];
   [UIView transitionWithView: self.view duration: 0.5
                      options: UIViewAnimationOptionTransitionCurlDown
                   animations:^ {
@@ -170,12 +184,18 @@
 - (void)moveToIp1FromDescription;
 {
   _state = 0;
+#if 0
   self.image = nil;
   self.salary = nil;
   self.imageUploadResponse = nil;
   self.itemUploadResponse = nil;
   [_firstImageView setImage: [UIImage imageNamed: @"addphoto.png"]];
-  [_price setText: @""];
+  [_price setText: @"Price"];
+  [_price setTextColor: [UIColor lightGrayColor]];
+#else
+  self.imageUploadResponse = nil;
+  self.itemUploadResponse = nil;
+#endif
   [UIView transitionWithView: self.view duration: 0.5
                      options: UIViewAnimationOptionTransitionCurlDown
                   animations:^ {
@@ -309,18 +329,21 @@
   {
     if (1 == index)
     {
+      A1_AV (price);
       A1_ATV (text, A1_KCAST (UITextField, textField));
       if (NSOrderedSame != [text compare: @""
                                  options: NSLiteralSearch])
       {
         self.salary = A1_STRING_WITH_FORMAT (@"%@", text);
+        [_price setTextColor: [UIColor blackColor]];
+        [price setText: A1_STRING_WITH_FORMAT (@"$%@", self.salary)];
       }
       else
       {
-        self.salary = @"0";
+        self.salary = nil;
+        [price setText: @"Price"];
+        [_price setTextColor: [UIColor lightGrayColor]];
       }
-      A1_AV (price);
-      [price setText: A1_STRING_WITH_FORMAT (@"$%@", self.salary)];
     }
   }
 
@@ -460,6 +483,8 @@
         didFinishPickingImage: (UIImage *)image
                   editingInfo: (NSDictionary *)editingInfo
 {
+  A1_CHECK (image);
+  
   if (image.size.width > image.size.height)
   {
     self.image = [[image resizedImage: CGSizeMake (480, 320)
@@ -477,8 +502,9 @@
     UIImageWriteToSavedPhotosAlbum (image, self, @selector (imageSavedToPhotosAlbum: didFinishSavingWithError: contextInfo:), self);
   }
   
-  A1_AV (firstImageView);
-  [firstImageView setImage: self.image];
+  [_firstImageView setImage: self.image];
+  [_photo setImage: self.image
+          forState: UIControlStateHighlighted];
 
   [picker dismissModalViewControllerAnimated: YES];
 }

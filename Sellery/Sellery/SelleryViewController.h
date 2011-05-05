@@ -63,5 +63,6 @@ A1_PP_PROPS (SelleryViewControllerNF);
 
 - (void)uploadFinished: (NSDictionary *)response;
 - (void)networkError: (NSError *)error;
+- (void)moveToIp1;
 
 @end

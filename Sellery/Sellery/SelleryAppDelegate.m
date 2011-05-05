@@ -14,6 +14,7 @@
 #import "SelleryAppCommunicationKit+Requests.h"
 #import "SelleryAppCommunicationKit+Response.h"
 #import "SelleryAppCommunicationKit+Errors.h"
+#import "SelleryViewController.h"
 
 #import "SelleryViewController.h"
 
@@ -60,6 +61,10 @@ static NSString* kAppId = @"104504556303736";
    Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
    If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
    */
+  
+  A1_ATV (date, NSDate);
+  A1_ATV (timeIntervalSince1970, date);
+  _shoutdownDate = timeIntervalSince1970;
 }
 
 - (void)applicationWillEnterForeground: (UIApplication *)application
@@ -74,6 +79,22 @@ static NSString* kAppId = @"104504556303736";
   /*
    Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
    */
+  A1_ATV (date, NSDate);
+  A1_ATV (timeIntervalSince1970, date);
+
+  if (_shoutdownDate > 0)
+  {
+    A1_V (result, timeIntervalSince1970 - _shoutdownDate);
+    if (result > 600)
+    {
+      A1_V (vc, (SelleryViewController *)self.viewController);
+      A1_ATV (state, vc);
+      if (state != 0)
+      {
+        [vc moveToIp1];
+      }
+    }
+  }
 }
 
 - (void)applicationWillTerminate: (UIApplication *)application

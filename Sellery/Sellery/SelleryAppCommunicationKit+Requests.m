@@ -75,7 +75,8 @@
   [postBody appendData:[@"Content-Disposition: form-data; name= \"some_other_name\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:[@"some_other_value" dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r \n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-  [req setHTTPBody:postBody];
+  
+  [req setHTTPBody: postBody];
   
   [self queueRequest: req
          contextInfo: contextInfo];
@@ -102,10 +103,23 @@
                                                  timeoutInterval: 60.0f];
   [req setHTTPMethod: @"POST"];
   
+#if 0
   A1_V (userObjects, A1_ARRAY (token, uid, provider, email));
   A1_V (userKeys, A1_ARRAY (@"token", @"uid", @"provider", @"email"));
+#else
+  A1_V (userObjects, A1_ARRAY (token, provider, email));
+  A1_V (userKeys, A1_ARRAY (@"token", @"provider", @"email"));
+#endif
+#if 0
   A1_V (itemObjects, A1_ARRAY (title, description, price, zipcode));
   A1_V (itemKeys, A1_ARRAY (@"title", @"description", @"price", @"zipcode"));
+#else
+  A1_V (locationObjects, A1_ARRAY (@"0.0", @"0.0"));
+  A1_V (locationKeys, A1_ARRAY (@"lat", @"lng"));
+  A1_V (locationCollection, A1_DICTIONARY_WITH_OBJECTS_FOR_KEYS (locationObjects, locationKeys));
+  A1_V (itemObjects, A1_ARRAY (title, description, price, locationCollection));
+  A1_V (itemKeys, A1_ARRAY (@"title", @"description", @"price", @"location"));
+#endif
   A1_V (itemObjectImage1, A1_ARRAY (image_id));
   A1_V (itemObjectKeys1, A1_ARRAY (@"image_id"));
   A1_V (itemImageCollection, A1_DICTIONARY_WITH_OBJECTS_FOR_KEYS (itemObjectImage1, itemObjectKeys1));
@@ -133,6 +147,11 @@
   [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
   [req setValue: @"json" forHTTPHeaderField: @"Data-Type"];
   [req setValue:[NSString stringWithFormat: @"%d", [encoded length]] forHTTPHeaderField: @"Content-Length"];
+  
+  A1_CUSTOM_NV (NSString, stringPostBody, initWithData: encoded
+                                              encoding: NSUTF8StringEncoding);
+  A1_DLOG (@"Posting an item with request: %@", stringPostBody);
+
 
   [req setHTTPBody: encoded];
   
