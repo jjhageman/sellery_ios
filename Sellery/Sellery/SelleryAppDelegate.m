@@ -111,7 +111,7 @@ static NSString* kAppId = @"104504556303736";
   /*
    Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
    */
-#if 0
+#if 1
   A1_ATV (date, NSDate);
   A1_ATV (timeIntervalSince1970, date);
 
