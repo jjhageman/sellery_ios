@@ -108,6 +108,7 @@
                      forKey: @"email"];
     [userDefaults setObject: [_zip text]
                      forKey: @"zip"];
+    [userDefaults synchronize];
 
 #if 1
     A1_V (appDelegate, A1_APP_DELEGATE);
@@ -145,6 +146,8 @@
 - (IBAction)loginWithFacebook: (id)anObject;
 {
   A1_V (appDelegate, A1_APP_DELEGATE);
+  [appDelegate setMoveToFacebook: YES];
+  
   if (_fbLoginButton.isLoggedIn)
   {
     [appDelegate logout];
@@ -184,18 +187,8 @@
 - (void)moveToIp1FromDescription;
 {
   _state = 0;
-#if 0
-  self.image = nil;
-  self.salary = nil;
   self.imageUploadResponse = nil;
   self.itemUploadResponse = nil;
-  [_firstImageView setImage: [UIImage imageNamed: @"addphoto.png"]];
-  [_price setText: @"Price"];
-  [_price setTextColor: [UIColor lightGrayColor]];
-#else
-  self.imageUploadResponse = nil;
-  self.itemUploadResponse = nil;
-#endif
   [UIView transitionWithView: self.view duration: 0.5
                      options: UIViewAnimationOptionTransitionCurlDown
                   animations:^ {
@@ -217,14 +210,6 @@
 
 - (void)moveToIp2;
 {
-  A1_V (appDelegate, A1_APP_DELEGATE);
-  A1_ATV (tokenExpired, appDelegate);
-  
-  if (tokenExpired)
-  {
-    _fbLoginButton.isLoggedIn = NO;
-  }
-  
   A1_V (userDefaults, A1_USER_DEFAULTS);
   
   _state = 1;
@@ -302,8 +287,12 @@
 {
 //  [actionSheet release];
   
+#if 0
   A1_NV (UIImagePickerController, imagePickerController);
+#else
+  UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
   imagePickerController.delegate = self;
+#endif
 
   switch (buttonIndex)
   {
@@ -410,18 +399,7 @@
 
 - (void)moveAlert: (UIAlertView *) alertView
 {
-#if 0
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  [UIView beginAnimations: nil
-                  context: context];
-  [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-  [UIView setAnimationDuration: 0.25f];
-  A1_V (pos, alertView.frame.origin);
-  alertView.center = CGPointMake (pos.x, pos.y - 40);
-  [UIView commitAnimations];
-#else
   [alertView setTransform: CGAffineTransformMakeTranslation (0, 0)];
-#endif
   [[alertView viewWithTag: 9999] becomeFirstResponder];
 }
 
@@ -487,41 +465,13 @@
   }  
 }
 
-#if 0
-- (void)imagePickerController: (UIImagePickerController *)picker 
-        didFinishPickingImage: (UIImage *)image
-                  editingInfo: (NSDictionary *)editingInfo
-{
-  A1_CHECK (image);
-  
-  if (image.size.width > image.size.height)
-  {
-    self.image = [[image resizedImage: CGSizeMake (480, 320)
-                 interpolationQuality: kCGInterpolationMedium] roundedCornerImage: 8 borderSize: 8];
-  }
-  else
-  {
-    self.image = [[image resizedImage: CGSizeMake (320, 480)
-                interpolationQuality: kCGInterpolationMedium] roundedCornerImage: 8 borderSize: 8];
-  }
-  
-  A1_ATV (sourceType, picker);
-  if (UIImagePickerControllerSourceTypePhotoLibrary != sourceType)
-  {
-    UIImageWriteToSavedPhotosAlbum (image, self, @selector (imageSavedToPhotosAlbum: didFinishSavingWithError: contextInfo:), self);
-  }
-  
-  [_firstImageView setImage: self.image];
-  [_photo setImage: nil
-          forState: UIControlStateHighlighted];
-
-  [picker dismissModalViewControllerAnimated: YES];
-}
-#else
 - (void)imagePickerController: (UIImagePickerController *)picker didFinishPickingMediaWithInfo: (NSDictionary *)info;
 {
   A1_DLOG (@"%@", info);
   
+  [picker dismissModalViewControllerAnimated: YES];
+  [picker release];
+
   UIImage *image = [info objectForKey: UIImagePickerControllerOriginalImage];
   
   if (image.size.width > image.size.height)
@@ -545,9 +495,10 @@
   [_photo setImage: nil
           forState: UIControlStateHighlighted];
   
+#if 0
   [picker dismissModalViewControllerAnimated: YES];
-}
 #endif
+}
 
 - (void)imagePickerControllerDidCancel: (UIImagePickerController *)picker
 {

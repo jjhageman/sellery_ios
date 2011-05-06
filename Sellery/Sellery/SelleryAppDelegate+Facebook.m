@@ -14,7 +14,14 @@
 
 - (void)login;
 {
-  [_facebook authorize: [NSArray arrayWithObjects: @"email", @"read_stream", @"offline_access", nil]
+  [_facebook authorize: [NSArray arrayWithObjects: @"email",
+                                                   @"user_location",
+                                                   @"user_about_me",
+                                                   @"user_hometown",
+                                                   @"user_photos",
+                                                   @"user_status",
+                                                   @"read_friendlists",
+                                                   @"offline_access", nil]
               delegate: self];
 }
 
@@ -131,6 +138,8 @@
   
   self.downloadingSheet = downloadingSheet;
 
+  _moveToFacebook = NO;
+  
   A1_AV (facebook);
   return [facebook handleOpenURL: url];
 }

@@ -12,6 +12,7 @@
 #import "FBConnect.h"
 #import "SelleryAppCommunicationKit.h"
 #import "SelleryAppRESTfulDelegate.h"
+#import <CoreLocation/CoreLocation.h>
 
 
 @class SelleryViewController;
@@ -22,11 +23,14 @@
   ((facebook) ((retain)) ((Facebook *))) \
   ((facebookResult) ((retain)) ((NSDictionary *))) \
   ((downloadingSheet) ((retain)) ((UIActionSheet *))) \
+  ((locationManager) ((retain)) ((CLLocationManager *))) \
 
 #define SelleryAppDelegateNF \
   ((shoutdownDate) ((assign)) ((NSTimeInterval))) \
+  ((moveToFacebook) ((assign)) ((BOOL))) \
+  ((location) ((assign)) ((CLLocationCoordinate2D))) \
 
-@interface SelleryAppDelegate : NSObject <UIApplicationDelegate, SelleryAppRESTfulDelegate>
+@interface SelleryAppDelegate : NSObject <UIApplicationDelegate, SelleryAppRESTfulDelegate, CLLocationManagerDelegate>
 {
   A1_PP_PROP_IVARS (SelleryAppDelegateF);
   A1_PP_PROP_IVARS (SelleryAppDelegateNF);

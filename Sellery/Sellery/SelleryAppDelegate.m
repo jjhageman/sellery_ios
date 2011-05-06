@@ -29,11 +29,35 @@ static NSString* kAppId = @"104504556303736";
 @synthesize window = _window;
 @synthesize viewController = _viewController;
 
+- (void)locationManager: (CLLocationManager *)manager
+    didUpdateToLocation: (CLLocation *)newLocation
+           fromLocation: (CLLocation *)oldLocation;
+{
+  A1_ATV (description, newLocation);
+  NSLog (@"Location: %@", description);
+  
+  A1_ATV (coordinate, newLocation);
+  _location = coordinate;
+}
+
+- (void)locationManager: (CLLocationManager *)manager
+       didFailWithError: (NSError *)error;
+{
+  A1_ATV (description, error);
+  NSLog (@"Error: %@", description);
+}
+
 - (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions: (NSDictionary *)launchOptions
 {
   sleep (3);
   
+  A1_NV (CLLocationManager, locationManager);
+  locationManager.delegate = self;
+  self.locationManager = locationManager;
+  [locationManager startUpdatingLocation];
+  
   // Override point for customization after application launch.
+  
   A1_NV (SelleryAppCommunicationKit, communicationKit);
   self.communicationKit = communicationKit;
   communicationKit.RESTfulDelegate = self;
@@ -62,9 +86,17 @@ static NSString* kAppId = @"104504556303736";
    If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
    */
   
+#if 0
   A1_ATV (date, NSDate);
   A1_ATV (timeIntervalSince1970, date);
   _shoutdownDate = timeIntervalSince1970;
+  if (!_moveToFacebook)
+  {
+    A1_V (vc, (SelleryViewController *)self.viewController);
+    [vc moveToIp1];
+  }
+#else
+#endif
 }
 
 - (void)applicationWillEnterForeground: (UIApplication *)application
@@ -79,6 +111,7 @@ static NSString* kAppId = @"104504556303736";
   /*
    Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
    */
+#if 0
   A1_ATV (date, NSDate);
   A1_ATV (timeIntervalSince1970, date);
 
@@ -95,6 +128,7 @@ static NSString* kAppId = @"104504556303736";
       }
     }
   }
+#endif
 }
 
 - (void)applicationWillTerminate: (UIApplication *)application

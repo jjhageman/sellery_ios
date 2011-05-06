@@ -6,9 +6,11 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "SelleryAppCommunicationKit+Requests.h"
 #import "SelleryAppRESTfulOperation.h"
 #import "CJSONDataSerializer.h"
+#import "SelleryAppDelegate.h"
 
 
 @implementation SelleryAppCommunicationKit (Requests)
@@ -114,7 +116,10 @@
   A1_V (itemObjects, A1_ARRAY (title, description, price, zipcode));
   A1_V (itemKeys, A1_ARRAY (@"title", @"description", @"price", @"zipcode"));
 #else
-  A1_V (locationObjects, A1_ARRAY (@"0.0", @"0.0"));
+  A1_V (appDelegate, A1_APP_DELEGATE);
+  CLLocationCoordinate2D pos = [(SelleryAppDelegate *)appDelegate location];
+
+  A1_V (locationObjects, A1_ARRAY (A1_STRING_WITH_FORMAT (@"%f", pos.latitude), A1_STRING_WITH_FORMAT (@"%f", pos.longitude)));
   A1_V (locationKeys, A1_ARRAY (@"lat", @"lng"));
   A1_V (itemObjects, A1_ARRAY (title, description, price));
   A1_V (itemKeys, A1_ARRAY (@"title", @"description", @"price"));
@@ -136,6 +141,8 @@
   [post setObject: location forKey: @"location"];
   [post setObject: item forKey: @"item"];
   [post setObject: images forKey: @"item_images"];
+  
+  A1_DLOG (@"Posting request: %@", post);
   
   A1_NV (NSMutableDictionary, itemPost); // huh!
   

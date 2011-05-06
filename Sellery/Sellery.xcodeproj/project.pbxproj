@@ -17,6 +17,7 @@
 		A74AF7A0137152AD00655A84 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = A74AF79B1371529900655A84 /* UIImage+Alpha.m */; };
 		A74AF7A1137152AD00655A84 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = A74AF79D1371529E00655A84 /* UIImage+Resize.m */; };
 		A74AF7A2137152AD00655A84 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = A74AF79F137152A700655A84 /* UIImage+RoundedCorner.m */; };
+		A76682E21373F7EC00AFDB8E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76682E11373F7EC00AFDB8E /* CoreLocation.framework */; };
 		A799BFBB1361AB0D00918E7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A799BFBA1361AB0D00918E7B /* UIKit.framework */; };
 		A799BFBD1361AB0D00918E7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A799BFBC1361AB0D00918E7B /* Foundation.framework */; };
 		A799BFBF1361AB0D00918E7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A799BFBE1361AB0D00918E7B /* CoreGraphics.framework */; };
@@ -83,6 +84,7 @@
 		A74AF79D1371529E00655A84 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		A74AF79E137152A200655A84 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		A74AF79F137152A700655A84 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		A76682E11373F7EC00AFDB8E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A799BFB61361AB0D00918E7B /* Sellery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sellery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A799BFBA1361AB0D00918E7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A799BFBC1361AB0D00918E7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -503,6 +505,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76682E21373F7EC00AFDB8E /* CoreLocation.framework in Frameworks */,
 				A7A788F51366A562005DABB2 /* SystemConfiguration.framework in Frameworks */,
 				A799BFBB1361AB0D00918E7B /* UIKit.framework in Frameworks */,
 				A799BFBD1361AB0D00918E7B /* Foundation.framework in Frameworks */,
@@ -516,6 +519,7 @@
 		A799BFAB1361AB0C00918E7B = {
 			isa = PBXGroup;
 			children = (
+				A76682E11373F7EC00AFDB8E /* CoreLocation.framework */,
 				A799BFC01361AB0D00918E7B /* Sellery */,
 				A799BFB91361AB0D00918E7B /* Frameworks */,
 				A799BFB71361AB0D00918E7B /* Products */,
@@ -1514,7 +1518,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tal Morgenstern (YDQP2L3UT6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Andreev (SHJ7PNTDF6)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -1523,7 +1527,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "46FC32F0-C9CD-4D83-91EC-8E6079B716DB";
+				PROVISIONING_PROFILE = "55D46901-ACD9-4469-94E6-859AD2A9DE20";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1532,14 +1536,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tal Morgenstern (YDQP2L3UT6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Andreev (SHJ7PNTDF6)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "46FC32F0-C9CD-4D83-91EC-8E6079B716DB";
+				PROVISIONING_PROFILE = "55D46901-ACD9-4469-94E6-859AD2A9DE20";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -1548,6 +1552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1560,6 +1565,7 @@
 				INFOPLIST_FILE = "Sellery/Sellery-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1569,6 +1575,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1580,6 +1587,7 @@
 				INFOPLIST_FILE = "Sellery/Sellery-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
