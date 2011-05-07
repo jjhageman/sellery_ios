@@ -18,9 +18,7 @@
                                                    @"user_location",
                                                    @"user_about_me",
                                                    @"user_hometown",
-                                                   @"user_photos",
                                                    @"user_status",
-                                                   @"read_friendlists",
                                                    @"offline_access", nil]
               delegate: self];
 }
@@ -121,6 +119,8 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
+  sleep (3);
+
   A1_CUSTOM_NV (UIActionSheet, downloadingSheet, initWithTitle: @"Requesting Facebook data, please wait\n\n\n"
                 delegate: nil
                 cancelButtonTitle: nil

@@ -30,6 +30,7 @@
   ((shoutdownDate) ((assign)) ((NSTimeInterval))) \
   ((moveToFacebook) ((assign)) ((BOOL))) \
   ((location) ((assign)) ((CLLocationCoordinate2D))) \
+  ((resignedActive) ((assign)) ((BOOL))) \
 
 @interface SelleryAppDelegate : NSObject <UIApplicationDelegate, SelleryAppRESTfulDelegate, CLLocationManagerDelegate>
 {

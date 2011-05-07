@@ -147,7 +147,6 @@
 - (IBAction)loginWithFacebook: (id)anObject;
 {
   A1_V (appDelegate, A1_APP_DELEGATE);
-  [appDelegate setMoveToFacebook: YES];
   
   if (_fbLoginButton.isLoggedIn)
   {
@@ -155,6 +154,7 @@
   }
   else
   {
+    [appDelegate setMoveToFacebook: YES];
     [appDelegate login];
   }
 }
@@ -680,6 +680,11 @@
   }
   
   [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated;
+{
+  A1_DLOG (@"View will appear");
 }
 
 - (void)viewDidUnload
