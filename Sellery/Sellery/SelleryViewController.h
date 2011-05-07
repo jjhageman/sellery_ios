@@ -19,6 +19,7 @@
   ((uploadingSheet) ((retain)) ((UIActionSheet *))) \
   ((imageUploadResponse) ((retain)) ((NSDictionary *))) \
   ((itemUploadResponse) ((retain)) ((NSDictionary *))) \
+  ((menu) ((retain)) ((UIActionSheet *))) \
 
 #define SelleryViewControllerNF \
   ((state) ((assign)) ((int))) \
@@ -27,6 +28,7 @@
 @interface SelleryViewController : UIViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate, UITextViewDelegate>
 {
   UIView *_ip0;
+  UIView *_ipInvisible;
   IBOutlet UIView *_ip1;
   IBOutlet UIView *_ip2;
   IBOutlet UIView *_ip3;
@@ -49,6 +51,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *price;
 @property (nonatomic, retain) FBLoginButton *fbLoginButton;
 @property (nonatomic, retain) IBOutlet UIView *ip0;
+@property (nonatomic, retain) IBOutlet UIView *ipInvisible;
 
 A1_PP_PROPS (SelleryViewControllerF);
 A1_PP_PROPS (SelleryViewControllerNF);

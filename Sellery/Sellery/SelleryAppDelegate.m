@@ -77,12 +77,32 @@ static NSString* kAppId = @"104504556303736";
    Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
    Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
    */
+  A1_V (vc, (SelleryViewController *)self.viewController);
   if (!_moveToFacebook)
   {
-    A1_V (vc, (SelleryViewController *)self.viewController);
     vc.ip0.alpha = 1.0f;
     [vc.view bringSubviewToFront: vc.ip0];
     _resignedActive = YES;
+  }
+  
+  A1_ATV (state, vc);
+  
+  if (1 == state)
+  {
+    if (vc.menu != nil)
+    {
+      [vc.menu dismissWithClickedButtonIndex: 2
+                                    animated: NO];
+    }
+  }
+  if (2 == state)
+  {
+    UITextField *tempTextField = [[UITextField alloc] initWithFrame: CGRectZero];
+    [vc.view addSubview:tempTextField];
+    [tempTextField becomeFirstResponder];
+    [tempTextField resignFirstResponder];
+    [tempTextField removeFromSuperview];
+    [tempTextField release];
   }
 }
 
@@ -107,9 +127,9 @@ static NSString* kAppId = @"104504556303736";
   /*
    Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
    */
+  A1_V (vc, (SelleryViewController *)self.viewController);
   if (!_moveToFacebook)
   {
-    A1_V (vc, (SelleryViewController *)self.viewController);
     [vc dismissIp0AndMoveToIp1FromSplashScreen];
     _resignedActive = NO;
   }

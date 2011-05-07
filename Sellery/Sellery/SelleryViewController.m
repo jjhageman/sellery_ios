@@ -25,6 +25,7 @@
 @synthesize fbLoginButton = _fbLoginButton;
 @synthesize firstImageView = _firstImageView;
 @synthesize ip0 = _ip0;
+@synthesize ipInvisible = _ipInvisible;
 
 #pragma mark -
 
@@ -450,6 +451,8 @@
       break;
   }
   
+  self.menu = nil;
+  
   [self presentModalViewController: imagePickerController
                           animated: YES];
 }
@@ -496,6 +499,7 @@
                             destructiveButtonTitle: nil
                                  otherButtonTitles: @"Camera", @"Photo Gallery", nil);
   [menu showInView: self.view];
+  self.menu = menu;
     
   A1_DLOG_TAG_END;
 }
