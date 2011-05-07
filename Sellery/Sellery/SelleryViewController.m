@@ -30,11 +30,25 @@
 
 - (IBAction)doneEditing: (id)sender
 {
+  A1_V (userDefaults, A1_USER_DEFAULTS);
+  [userDefaults setObject: [_email text]
+                   forKey: @"email"];
+  [userDefaults setObject: [_zip text]
+                   forKey: @"zip"];
+  [userDefaults synchronize];
+
   [sender resignFirstResponder];
 }
 
 - (IBAction)hideKeypad: (id)sender;
 {
+  A1_V (userDefaults, A1_USER_DEFAULTS);
+  [userDefaults setObject: [_email text]
+                   forKey: @"email"];
+  [userDefaults setObject: [_zip text]
+                   forKey: @"zip"];
+  [userDefaults synchronize];
+
   [_textView resignFirstResponder];
   [_zip resignFirstResponder];
   [_email resignFirstResponder];
@@ -104,13 +118,6 @@
     [uploadingSheet showInView: self.view];
     self.uploadingSheet = uploadingSheet;
     
-    A1_V (userDefaults, A1_USER_DEFAULTS);
-    [userDefaults setObject: [_email text]
-                     forKey: @"email"];
-    [userDefaults setObject: [_zip text]
-                     forKey: @"zip"];
-    [userDefaults synchronize];
-
 #if 1
     A1_V (appDelegate, A1_APP_DELEGATE);
     A1_ATV (communicationKit, appDelegate);
