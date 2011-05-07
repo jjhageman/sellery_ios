@@ -26,6 +26,7 @@
 
 @interface SelleryViewController : UIViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate, UITextViewDelegate>
 {
+  UIView *_ip0;
   IBOutlet UIView *_ip1;
   IBOutlet UIView *_ip2;
   IBOutlet UIView *_ip3;
@@ -47,6 +48,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *firstImageView;
 @property (nonatomic, retain) IBOutlet UILabel *price;
 @property (nonatomic, retain) FBLoginButton *fbLoginButton;
+@property (nonatomic, retain) IBOutlet UIView *ip0;
 
 A1_PP_PROPS (SelleryViewControllerF);
 A1_PP_PROPS (SelleryViewControllerNF);
@@ -64,5 +66,6 @@ A1_PP_PROPS (SelleryViewControllerNF);
 - (void)uploadFinished: (NSDictionary *)response;
 - (void)networkError: (NSError *)error;
 - (void)moveToIp1;
+- (void)dismissIp0AndMoveToIp1FromSplashScreen;
 
 @end

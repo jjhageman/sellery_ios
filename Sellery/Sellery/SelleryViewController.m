@@ -24,6 +24,7 @@
 @synthesize price = _price;
 @synthesize fbLoginButton = _fbLoginButton;
 @synthesize firstImageView = _firstImageView;
+@synthesize ip0 = _ip0;
 
 #pragma mark -
 
@@ -163,39 +164,130 @@
   [view removeFromSuperview];
 }
 
-- (void)moveToIp1;
+- (UIView *)topMostView;
 {
-  _state = 0;
+  A1_ATV (subviews, self.view);
+  A1_ATV (count, subviews);
+  
+  if (count > 1)
+  {
+    return [subviews objectAtIndex: --count];
+  }
+  
+  if (count > 0)
+  {
+    [subviews objectAtIndex: 0];
+  }
+  
+  return nil;
+}
+
+- (void)delaydSplashScreen;
+{
+  _ip1.alpha = 0.0f;
+  [self.view bringSubviewToFront: _ip1];
+
+  [UIView transitionWithView: self.view
+                    duration: 0.5
+                     options: UIViewAnimationOptionTransitionNone
+                  animations:^ {
+                    _ip0.alpha = 0.0f;
+                    _ip1.alpha = 1.0f;
+                  }
+                  completion: ^ (BOOL finished){
+                    [self.view sendSubviewToBack: _ip0];
+                  }];
+}
+
+- (void)dismissIp0AndMoveToIp1FromSplashScreen;
+{
+  _state = 1;
+
   self.image = nil;
   self.salary = nil;
   self.imageUploadResponse = nil;
   self.itemUploadResponse = nil;
+  
   [_firstImageView setImage: [UIImage imageNamed: @"addphoto.png"]];
   [_photo setImage: [UIImage imageNamed: @"addphoto_pressed.png"]
           forState: UIControlStateHighlighted];
   [_price setText: @"Price"];
   [_price setTextColor: [UIColor lightGrayColor]];
-  [UIView transitionWithView: self.view duration: 0.5
+
+  _ip0.alpha = 1.0f;
+  [self.view bringSubviewToFront: _ip0];
+  [self performSelector: @selector (delaydSplashScreen)
+             withObject: nil
+             afterDelay: 3.0f];
+}
+
+- (void)moveToIp0;
+{
+  _state = 0;
+  
+  self.image = nil;
+  self.salary = nil;
+  self.imageUploadResponse = nil;
+  self.itemUploadResponse = nil;
+  
+  A1_AV (topMostView);
+
+  [UIView transitionWithView: self.view
+                    duration: 0.5
+                     options: UIViewAnimationOptionTransitionCurlUp
+                  animations:^ {
+                    [self.view bringSubviewToFront: _ip0];
+                  }
+                  completion: ^ (BOOL finished){
+                    [self.view sendSubviewToBack: topMostView];
+                  }];
+}
+
+- (void)moveToIp1;
+{
+  _state = 1;
+  
+  self.image = nil;
+  self.salary = nil;
+  self.imageUploadResponse = nil;
+  self.itemUploadResponse = nil;
+  
+  [_firstImageView setImage: [UIImage imageNamed: @"addphoto.png"]];
+  [_photo setImage: [UIImage imageNamed: @"addphoto_pressed.png"]
+          forState: UIControlStateHighlighted];
+  [_price setText: @"Price"];
+  [_price setTextColor: [UIColor lightGrayColor]];
+
+  A1_AV (topMostView);
+
+  [UIView transitionWithView: self.view
+                    duration: 0.5
                      options: UIViewAnimationOptionTransitionCurlDown
                   animations:^ {
-                    [_ip3 removeFromSuperview];
-                    [self.view addSubview: _ip1];
+                    [self.view bringSubviewToFront: _ip1];
                   }
-                  completion: nil];
+                  completion: ^ (BOOL finished){
+                    [self.view sendSubviewToBack: topMostView];
+                  }];
 }
 
 - (void)moveToIp1FromDescription;
 {
-  _state = 0;
+  _state = 1;
+  
   self.imageUploadResponse = nil;
   self.itemUploadResponse = nil;
+
+  A1_AV (topMostView);
+
   [UIView transitionWithView: self.view duration: 0.5
                      options: UIViewAnimationOptionTransitionCurlDown
                   animations:^ {
-                    [_ip2 removeFromSuperview];
-                    [self.view addSubview: _ip1];
+                    [self.view bringSubviewToFront: _ip1];
                   }
-                  completion: nil];
+                  completion: ^ (BOOL finished){
+                    [self.view sendSubviewToBack: topMostView];
+                  }];
 }
 
 - (IBAction)processToFirstScreen: (id)anObject;
@@ -212,7 +304,7 @@
 {
   A1_V (userDefaults, A1_USER_DEFAULTS);
   
-  _state = 1;
+  _state = 2;
   _hasEnteredDescription = NO;
   [_textView setText: @"Please, enter the description"];
   [_textView setTextColor: [UIColor grayColor]];
@@ -223,40 +315,80 @@
   [_textView.layer setBorderWidth: 3.0];
   [_textView.layer setCornerRadius:4.0f];
   [_textView.layer setMasksToBounds:YES];
+  
+  A1_AV (topMostView);
+  
   [UIView transitionWithView: self.view
                     duration: 0.5
                      options: UIViewAnimationOptionTransitionCurlDown
                   animations:^ {
-                    [_ip1 removeFromSuperview];
-                    [self.view addSubview: _ip2];
+                    [self.view bringSubviewToFront: _ip2];
                   }
-                  completion: nil];
+                  completion: ^ (BOOL finished){
+                    [self.view sendSubviewToBack: topMostView];
+                  }];
+}
+
+- (void)moveToIp2FromFacebookLogin;
+{
+  A1_V (userDefaults, A1_USER_DEFAULTS);
+  
+  _state = 2;
+  _hasEnteredDescription = NO;
+  [_textView setText: @"Please, enter the description"];
+  [_textView setTextColor: [UIColor grayColor]];
+  [_email setText: [userDefaults objectForKey: @"email"]];
+  [_zip setText: [userDefaults objectForKey: @"zip"]];
+  [_textView.layer setBackgroundColor: [[UIColor whiteColor] CGColor]];
+  [_textView.layer setBorderColor: [[UIColor grayColor] CGColor]];
+  [_textView.layer setBorderWidth: 3.0];
+  [_textView.layer setCornerRadius:4.0f];
+  [_textView.layer setMasksToBounds:YES];
+  
+  _ip0.alpha = 1.0f;
+  _ip2.alpha = 0.0f;
+  [self.view bringSubviewToFront: _ip0];
+  [UIView transitionWithView: self.view
+                    duration: 0.5
+                     options: UIViewAnimationOptionTransitionNone
+                  animations:^ {
+                    _ip0.alpha = 0.0f;
+                    _ip2.alpha = 1.0f;
+                  }
+                  completion: ^ (BOOL finished){
+                    [self.view sendSubviewToBack: _ip0];
+                  }];
 }
 
 - (void)moveToIp3;
 {
-  _state = 2;
+  _state = 3;
+
+  A1_AV (topMostView);
+  
   [UIView transitionWithView: self.view duration: 0.5
                      options: UIViewAnimationOptionTransitionCurlDown
                   animations:^ {
-                    [_ip2 removeFromSuperview];
-                    [self.view addSubview: _ip3];
+                    [self.view bringSubviewToFront: _ip3];
                   }
-                  completion: nil];
+                  completion: ^ (BOOL finished){
+                    [self.view sendSubviewToBack: topMostView];
+                  }];
 }
 
 - (void)uploadFinished: (NSDictionary *)response;
 {
-  [self.uploadingSheet dismissWithClickedButtonIndex: 0 animated: YES];
+  [self.uploadingSheet dismissWithClickedButtonIndex: 0
+                                            animated: YES];
   self.uploadingSheet = nil;
   
   switch (_state)
   {
-    case 0:
+    case 1:
       self.imageUploadResponse = response;
       [self moveToIp2];
       break;
-    case 1:
+    case 2:
       self.itemUploadResponse = response;
       [self moveToIp3];
       break;
@@ -521,12 +653,12 @@
 - (void)viewDidLoad
 {
   _state = 0;
-  [self.view addSubview: _ip1];
   
   A1_V (userDefaults, A1_USER_DEFAULTS);
   A1_V (uid, [userDefaults objectForKey: @"id"])
   A1_V (accessToken, [userDefaults objectForKey: @"accessToken"])
-  
+  A1_V (appDelegate, (SelleryAppDelegate *)A1_APP_DELEGATE);
+
   if (nil == uid || nil == accessToken)  
   {
     _fbLoginButton.isLoggedIn = NO;
@@ -537,6 +669,16 @@
   }
 
   [_fbLoginButton updateImage];
+
+  if (!appDelegate.moveToFacebook)
+  {
+    [self dismissIp0AndMoveToIp1FromSplashScreen];
+  }
+  else
+  {
+    [self moveToIp2FromFacebookLogin];
+  }
+  
   [super viewDidLoad];
 }
 

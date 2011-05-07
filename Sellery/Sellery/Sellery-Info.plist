@@ -45,7 +45,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UIApplicationExitsOnSuspend</key>
-	<true/>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

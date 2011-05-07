@@ -49,7 +49,7 @@ static NSString* kAppId = @"104504556303736";
 
 - (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions: (NSDictionary *)launchOptions
 {
-  sleep (3);
+//  sleep (3);
   
   A1_NV (CLLocationManager, locationManager);
   locationManager.delegate = self;
@@ -77,6 +77,11 @@ static NSString* kAppId = @"104504556303736";
    Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
    Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
    */
+  if (!_moveToFacebook)
+  {
+    A1_V (vc, (SelleryViewController *)self.viewController);
+    [vc dismissIp0AndMoveToIp1FromSplashScreen];
+  }
 }
 
 - (void)applicationDidEnterBackground: (UIApplication *)application
@@ -90,11 +95,6 @@ static NSString* kAppId = @"104504556303736";
   A1_ATV (date, NSDate);
   A1_ATV (timeIntervalSince1970, date);
   _shoutdownDate = timeIntervalSince1970;
-  if (!_moveToFacebook)
-  {
-    A1_V (vc, (SelleryViewController *)self.viewController);
-    [vc moveToIp1];
-  }
 #else
 #endif
 }
@@ -111,7 +111,7 @@ static NSString* kAppId = @"104504556303736";
   /*
    Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
    */
-#if 1
+#if 0
   A1_ATV (date, NSDate);
   A1_ATV (timeIntervalSince1970, date);
 
@@ -128,6 +128,7 @@ static NSString* kAppId = @"104504556303736";
       }
     }
   }
+#else
 #endif
 }
 
@@ -138,6 +139,28 @@ static NSString* kAppId = @"104504556303736";
    Save data if appropriate.
    See also applicationDidEnterBackground:.
    */
+  
+#if 0
+  A1_V (vc, (SelleryViewController *)self.viewController);
+  A1_V (userDefaults, A1_USER_DEFAULTS);
+  [userDefaults setObject: [NSNumber numberWithBool: _moveToFacebook]
+                   forKey: @"moveToFacebook"];
+  if (_moveToFacebook)
+  {
+    A1_ATV (image, vc);
+    A1_ATV (salary, vc);
+    A1_ATV (imageUploadResponse, vc);
+
+    [userDefaults setObject: image
+                     forKey: @"image"];
+    [userDefaults setObject: salary
+                     forKey: @"salary"];
+    [userDefaults setObject: imageUploadResponse
+                     forKey: @"imageUploadResponse"];
+  }
+  
+  [userDefaults synchronize];
+#endif
 }
 
 - (void)dealloc

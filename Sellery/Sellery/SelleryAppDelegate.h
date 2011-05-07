@@ -24,6 +24,7 @@
   ((facebookResult) ((retain)) ((NSDictionary *))) \
   ((downloadingSheet) ((retain)) ((UIActionSheet *))) \
   ((locationManager) ((retain)) ((CLLocationManager *))) \
+  ((view) ((retain)) ((UIView *))) \
 
 #define SelleryAppDelegateNF \
   ((shoutdownDate) ((assign)) ((NSTimeInterval))) \
