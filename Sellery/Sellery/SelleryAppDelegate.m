@@ -101,12 +101,6 @@ static NSString* kAppId = @"104504556303736";
       [vc.menu dismissWithClickedButtonIndex: 2
                                     animated: NO];
     }
-    if (vc.alertView)
-    {
-      [vc.alertView dismissWithClickedButtonIndex: 0
-                                         animated: NO];
-      [vc.selleryButton setEnabled: YES];
-    }
   }
   if (2 == state)
   {
@@ -116,6 +110,13 @@ static NSString* kAppId = @"104504556303736";
     [tempTextField resignFirstResponder];
     [tempTextField removeFromSuperview];
     [tempTextField release];
+  }
+
+  if (vc.alertView)
+  {
+    [vc.alertView dismissWithClickedButtonIndex: 0
+                                       animated: NO];
+    [vc.selleryButton setEnabled: YES];
   }
 }
 
