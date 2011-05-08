@@ -119,7 +119,7 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-  sleep (3);
+//  sleep (3);
 
   A1_CUSTOM_NV (UIActionSheet, downloadingSheet, initWithTitle: @"Requesting Facebook data, please wait\n\n\n"
                 delegate: nil
@@ -138,6 +138,8 @@
   
   self.downloadingSheet = downloadingSheet;
 
+  [A1_APP_DELEGATE setUploading: YES];
+  
   _moveToFacebook = NO;
   
   A1_AV (facebook);
@@ -149,6 +151,8 @@
 - (void)request: (FBRequest *)request
         didLoad: (id)result;
 {
+  [A1_APP_DELEGATE setUploading: NO];
+  
   A1_V (userDefaults, A1_USER_DEFAULTS);
 
   if ([result isKindOfClass: [NSArray class]])
@@ -177,6 +181,8 @@
 - (void) request: (FBRequest *)request
 didFailWithError: (NSError *)error;
 {
+  [A1_APP_DELEGATE setUploading: NO];
+
   // Something goes wrong
   A1_AV (viewController);
   A1_ATV (fbLoginButton, viewController);

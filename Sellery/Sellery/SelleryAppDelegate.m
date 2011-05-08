@@ -78,14 +78,21 @@ static NSString* kAppId = @"104504556303736";
    Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
    */
   A1_V (vc, (SelleryViewController *)self.viewController);
+  A1_ATV (state, vc);
+
   if (!_moveToFacebook)
   {
-    vc.ip0.alpha = 1.0f;
-    [vc.view bringSubviewToFront: vc.ip0];
-    _resignedActive = YES;
+    if (!vc.selectingImage)
+    {
+      vc.ip0.alpha = 1.0f;
+      [vc.view bringSubviewToFront: vc.ip0];
+      _resignedActive = YES;
+    }
   }
-  
-  A1_ATV (state, vc);
+  else
+  {
+    [vc.view bringSubviewToFront: vc.ip2];
+  }
   
   if (1 == state)
   {
@@ -93,6 +100,12 @@ static NSString* kAppId = @"104504556303736";
     {
       [vc.menu dismissWithClickedButtonIndex: 2
                                     animated: NO];
+    }
+    if (vc.alertView)
+    {
+      [vc.alertView dismissWithClickedButtonIndex: 0
+                                         animated: NO];
+      [vc.selleryButton setEnabled: YES];
     }
   }
   if (2 == state)
@@ -127,11 +140,19 @@ static NSString* kAppId = @"104504556303736";
   /*
    Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
    */
+  
   A1_V (vc, (SelleryViewController *)self.viewController);
   if (!_moveToFacebook)
   {
-    [vc dismissIp0AndMoveToIp1FromSplashScreen];
-    _resignedActive = NO;
+    if (!vc.selectingImage)
+    {
+      [vc dismissIp0AndMoveToIp1FromSplashScreen];
+      _resignedActive = NO;
+    }
+  }
+  else
+  {
+    [vc.view bringSubviewToFront: vc.ip2];
   }
 }
 
@@ -160,7 +181,7 @@ static NSString* kAppId = @"104504556303736";
       A1_ATV (state, vc);
       if (state != 0)
       {
-        [vc moveToIp1];
+        [vc dismissIp0AndMoveToIp1FromSplashScreen];
       }
     }
   }

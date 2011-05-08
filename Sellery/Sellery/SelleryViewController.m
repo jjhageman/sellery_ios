@@ -25,7 +25,9 @@
 @synthesize fbLoginButton = _fbLoginButton;
 @synthesize firstImageView = _firstImageView;
 @synthesize ip0 = _ip0;
+@synthesize ip2 = _ip2;
 @synthesize ipInvisible = _ipInvisible;
+@synthesize selleryButton = _selleryButton;
 
 #pragma mark -
 
@@ -99,6 +101,7 @@
                                                delegate: self
                                       cancelButtonTitle: nil
                                       otherButtonTitles: @"OK", nil);
+    self.alertView = alertView;
     [alertView show];
   }
   else
@@ -353,7 +356,8 @@
   [_textView.layer setCornerRadius:4.0f];
   [_textView.layer setMasksToBounds:YES];
   
-  _ip0.alpha = 1.0f;
+#if 0
+  _ip0.alpha = 0.0f;
   _ip2.alpha = 0.0f;
   [self.view bringSubviewToFront: _ip0];
   [UIView transitionWithView: self.view
@@ -366,6 +370,9 @@
                   completion: ^ (BOOL finished){
                     [self.view sendSubviewToBack: _ip0];
                   }];
+#else
+  [self.view bringSubviewToFront: _ip2];
+#endif
 }
 
 - (void)moveToIp3;
@@ -420,6 +427,7 @@
                                              delegate: self
                                     cancelButtonTitle: nil
                                     otherButtonTitles: @"OK", nil);
+  self.alertView = alertView;
   [alertView show];
 }
 
@@ -437,17 +445,21 @@
   switch (buttonIndex)
   {
     case 0:
+      _selectingImage = YES;
       imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
       break;
 
     case 1:
+      _selectingImage = YES;
       imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
       break;
 
     case 2:
+      _selectingImage = NO;
       return;
 
     default:
+      _selectingImage = NO;
       break;
   }
   
@@ -485,6 +497,8 @@
       }
     }
   }
+  
+  self.alertView = nil;
 
   [_selleryButton setEnabled: YES];
 }
@@ -512,6 +526,7 @@
                                                      delegate: self
                                             cancelButtonTitle: @"Cancel"
                                             otherButtonTitles: @"OK", nil];
+  self.alertView = alertView;
   UITextField *tf = [[UITextField alloc]
                      initWithFrame:CGRectMake(0.0f, 0.0f, 260.0f, 30.0f)];
   tf.borderStyle = UITextBorderStyleRoundedRect;
@@ -559,6 +574,7 @@
                                                delegate: self
                                       cancelButtonTitle: nil
                                       otherButtonTitles: @"OK", nil);
+    self.alertView = alertView;
     [alertView show];
   }
   else
@@ -637,6 +653,8 @@
   [_firstImageView setImage: self.image];
   [_photo setImage: nil
           forState: UIControlStateHighlighted];
+  
+  _selectingImage = NO;
   
 #if 0
   [picker dismissModalViewControllerAnimated: YES];

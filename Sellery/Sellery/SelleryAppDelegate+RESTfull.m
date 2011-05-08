@@ -31,6 +31,8 @@
 {
   A1_DLOG_TAG_BEG;
   
+  [A1_APP_DELEGATE setUploading: NO];
+  
   A1_V (selleryController, A1_KCAST (SelleryViewController, contextInfo));
   [selleryController uploadFinished: response];
   
@@ -42,6 +44,8 @@
 {
   A1_DLOG_TAG_BEG;
 
+  [A1_APP_DELEGATE setUploading: NO];
+  
   A1_V (selleryController, A1_KCAST (SelleryViewController, contextInfo));
   [selleryController networkError: error];
   

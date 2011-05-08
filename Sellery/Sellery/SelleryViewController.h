@@ -20,10 +20,12 @@
   ((imageUploadResponse) ((retain)) ((NSDictionary *))) \
   ((itemUploadResponse) ((retain)) ((NSDictionary *))) \
   ((menu) ((retain)) ((UIActionSheet *))) \
+  ((alertView) ((retain)) ((UIAlertView *))) \
 
 #define SelleryViewControllerNF \
   ((state) ((assign)) ((int))) \
   ((hasEnteredDescription) ((assign)) ((BOOL))) \
+  ((selectingImage) ((assign)) ((BOOL))) \
 
 @interface SelleryViewController : UIViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate, UITextViewDelegate>
 {
@@ -51,7 +53,9 @@
 @property (nonatomic, retain) IBOutlet UILabel *price;
 @property (nonatomic, retain) FBLoginButton *fbLoginButton;
 @property (nonatomic, retain) IBOutlet UIView *ip0;
+@property (nonatomic, retain) IBOutlet UIView *ip2;
 @property (nonatomic, retain) IBOutlet UIView *ipInvisible;
+@property (nonatomic, retain) IBOutlet UIButton *selleryButton;
 
 A1_PP_PROPS (SelleryViewControllerF);
 A1_PP_PROPS (SelleryViewControllerNF);

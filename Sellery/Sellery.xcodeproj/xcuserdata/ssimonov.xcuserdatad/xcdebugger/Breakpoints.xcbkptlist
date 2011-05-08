@@ -8,13 +8,27 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Sellery/SelleryViewController.m"
-         timestampString = "326449194.421862"
+         filePath = "Sellery/SelleryAppDelegate.m"
+         timestampString = "326550546.940253"
          startingColumnNumber = "2147483647"
          endingColumnNumber = "2147483647"
-         startingLineNumber = "703"
-         endingLineNumber = "703"
-         landmarkName = "-viewDidLoad"
+         startingLineNumber = "83"
+         endingLineNumber = "83"
+         landmarkName = "-applicationWillResignActive:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Sellery/SelleryAppDelegate.m"
+         timestampString = "326560295.910603"
+         startingColumnNumber = "2147483647"
+         endingColumnNumber = "2147483647"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
+         landmarkName = "-applicationDidBecomeActive:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -23,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sellery/SelleryViewController.m"
-         timestampString = "326448628.246243"
+         timestampString = "326560535.63164"
          startingColumnNumber = "2147483647"
          endingColumnNumber = "2147483647"
-         startingLineNumber = "187"
-         endingLineNumber = "187"
+         startingLineNumber = "198"
+         endingLineNumber = "198"
          landmarkName = "-delaydSplashScreen"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sellery/SelleryViewController.m"
-         timestampString = "326448628.246243"
+         timestampString = "326560535.63164"
          startingColumnNumber = "2147483647"
          endingColumnNumber = "2147483647"
-         startingLineNumber = "204"
-         endingLineNumber = "204"
+         startingLineNumber = "215"
+         endingLineNumber = "215"
          landmarkName = "-dismissIp0AndMoveToIp1FromSplashScreen"
          landmarkType = "5">
       </FileBreakpoint>
@@ -51,12 +65,40 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Sellery/SelleryViewController.m"
-         timestampString = "326448628.246243"
+         timestampString = "326560535.63164"
          startingColumnNumber = "2147483647"
          endingColumnNumber = "2147483647"
-         startingLineNumber = "228"
-         endingLineNumber = "228"
+         startingLineNumber = "237"
+         endingLineNumber = "237"
          landmarkName = "-moveToIp0"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Sellery/SelleryViewController.m"
+         timestampString = "326560535.63164"
+         startingColumnNumber = "2147483647"
+         endingColumnNumber = "2147483647"
+         startingLineNumber = "684"
+         endingLineNumber = "684"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Sellery/SelleryViewController.m"
+         timestampString = "326560535.63164"
+         startingColumnNumber = "2147483647"
+         endingColumnNumber = "2147483647"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
+         landmarkName = "-loginWithFacebook:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -64,13 +106,27 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Sellery/SelleryViewController.m"
-         timestampString = "326448628.246243"
+         filePath = "Sellery/SelleryAppDelegate+Facebook.m"
+         timestampString = "326555169.789225"
          startingColumnNumber = "2147483647"
          endingColumnNumber = "2147483647"
-         startingLineNumber = "334"
-         endingLineNumber = "334"
-         landmarkName = "-moveToIp2FromFacebookLogin"
+         startingLineNumber = "124"
+         endingLineNumber = "124"
+         landmarkName = "-application:handleOpenURL:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Sellery/SelleryAppDelegate+Facebook.m"
+         timestampString = "326558536.153188"
+         startingColumnNumber = "2147483647"
+         endingColumnNumber = "2147483647"
+         startingLineNumber = "167"
+         endingLineNumber = "167"
+         landmarkName = "-request:didLoad:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
