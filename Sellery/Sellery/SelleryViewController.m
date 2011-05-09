@@ -61,7 +61,7 @@
 {
   _hasEnteredDescription = YES;
   A1_ATV (text, textView);
-  if (NSOrderedSame == [text compare: @"Please, enter the description"
+  if (NSOrderedSame == [text compare: @"Description (optional)"
                              options: NSLiteralSearch])
   {
     [textView setText: @""];
@@ -77,7 +77,7 @@
                              options: NSLiteralSearch])
   {
     _hasEnteredDescription = NO;
-    [textView setText: @"Please, enter the description"];
+    [textView setText: @"Description (optional)"];
     [textView setTextColor: [UIColor grayColor]];
   }
   
@@ -129,7 +129,7 @@
 
     NSString *description = nil;
     A1_ATV (text, _textView);
-    if (NSOrderedSame == [text compare: @"Please, enter the description"
+    if (NSOrderedSame == [text compare: @"Description (optional)"
                                options: NSOrderedSame])
     {
       description = @"";
@@ -222,7 +222,7 @@
   [_firstImageView setImage: [UIImage imageNamed: @"addphoto.png"]];
   [_photo setImage: [UIImage imageNamed: @"addphoto_pressed.png"]
           forState: UIControlStateHighlighted];
-  [_price setText: @"Price"];
+  [_price setText: @"Price it"];
   [_price setTextColor: [UIColor lightGrayColor]];
 
   _ip0.alpha = 1.0f;
@@ -266,7 +266,7 @@
   [_firstImageView setImage: [UIImage imageNamed: @"addphoto.png"]];
   [_photo setImage: [UIImage imageNamed: @"addphoto_pressed.png"]
           forState: UIControlStateHighlighted];
-  [_price setText: @"Price"];
+  [_price setText: @"Price it"];
   [_price setTextColor: [UIColor lightGrayColor]];
 
   A1_AV (topMostView);
@@ -317,7 +317,7 @@
   
   _state = 2;
   _hasEnteredDescription = NO;
-  [_textView setText: @"Please, enter the description"];
+  [_textView setText: @"Description (optional)"];
   [_textView setTextColor: [UIColor grayColor]];
   [_email setText: [userDefaults objectForKey: @"email"]];
   [_zip setText: [userDefaults objectForKey: @"zip"]];
@@ -346,7 +346,7 @@
   
   _state = 2;
   _hasEnteredDescription = NO;
-  [_textView setText: @"Please, enter the description"];
+  [_textView setText: @"Description (optional)"];
   [_textView setTextColor: [UIColor grayColor]];
   [_email setText: [userDefaults objectForKey: @"email"]];
   [_zip setText: [userDefaults objectForKey: @"zip"]];
@@ -492,7 +492,7 @@
       else
       {
         self.salary = nil;
-        [price setText: @"Price"];
+        [price setText: @"Price it"];
         [_price setTextColor: [UIColor lightGrayColor]];
       }
     }
@@ -699,14 +699,14 @@
 
   [_fbLoginButton updateImage];
 
-  if (!appDelegate.moveToFacebook)
+//  if (!appDelegate.moveToFacebook)
   {
     [self dismissIp0AndMoveToIp1FromSplashScreen];
   }
-  else
-  {
-    [self moveToIp2FromFacebookLogin];
-  }
+//  else
+//  {
+//    [self moveToIp2FromFacebookLogin];
+//  }
   
   [super viewDidLoad];
 }

@@ -64,7 +64,10 @@ static NSString* kAppId = @"104504556303736";
   
   A1_CUSTOM_NV (Facebook, facebook, initWithAppId: kAppId);
   self.facebook = facebook;
-    
+  
+  A1_V (vc, (SelleryViewController *)self.viewController);
+  [vc.view bringSubviewToFront: vc.ip0];
+  
   self.window.rootViewController = self.viewController;
   [self.window makeKeyAndVisible];
   
@@ -77,47 +80,47 @@ static NSString* kAppId = @"104504556303736";
    Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
    Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
    */
-  A1_V (vc, (SelleryViewController *)self.viewController);
-  A1_ATV (state, vc);
-
-  if (!_moveToFacebook)
-  {
-    if (!vc.selectingImage)
-    {
-      vc.ip0.alpha = 1.0f;
-      [vc.view bringSubviewToFront: vc.ip0];
-      _resignedActive = YES;
-    }
-  }
-  else
-  {
-    [vc.view bringSubviewToFront: vc.ip2];
-  }
-  
-  if (1 == state)
-  {
-    if (vc.menu != nil)
-    {
-      [vc.menu dismissWithClickedButtonIndex: 2
-                                    animated: NO];
-    }
-  }
-  if (2 == state)
-  {
-    UITextField *tempTextField = [[UITextField alloc] initWithFrame: CGRectZero];
-    [vc.view addSubview:tempTextField];
-    [tempTextField becomeFirstResponder];
-    [tempTextField resignFirstResponder];
-    [tempTextField removeFromSuperview];
-    [tempTextField release];
-  }
-
-  if (vc.alertView)
-  {
-    [vc.alertView dismissWithClickedButtonIndex: 0
-                                       animated: NO];
-    [vc.selleryButton setEnabled: YES];
-  }
+//  A1_V (vc, (SelleryViewController *)self.viewController);
+//  A1_ATV (state, vc);
+//
+//  if (!_moveToFacebook)
+//  {
+//    if (!vc.selectingImage)
+//    {
+//      vc.ip0.alpha = 1.0f;
+//      [vc.view bringSubviewToFront: vc.ip0];
+//      _resignedActive = YES;
+//    }
+//  }
+//  else
+//  {
+//    [vc.view bringSubviewToFront: vc.ip2];
+//  }
+//  
+//  if (1 == state)
+//  {
+//    if (vc.menu != nil)
+//    {
+//      [vc.menu dismissWithClickedButtonIndex: 2
+//                                    animated: NO];
+//    }
+//  }
+//  if (2 == state)
+//  {
+//    UITextField *tempTextField = [[UITextField alloc] initWithFrame: CGRectZero];
+//    [vc.view addSubview:tempTextField];
+//    [tempTextField becomeFirstResponder];
+//    [tempTextField resignFirstResponder];
+//    [tempTextField removeFromSuperview];
+//    [tempTextField release];
+//  }
+//
+//  if (vc.alertView)
+//  {
+//    [vc.alertView dismissWithClickedButtonIndex: 0
+//                                       animated: NO];
+//    [vc.selleryButton setEnabled: YES];
+//  }
 }
 
 - (void)applicationDidEnterBackground: (UIApplication *)application
@@ -142,19 +145,19 @@ static NSString* kAppId = @"104504556303736";
    Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
    */
   
-  A1_V (vc, (SelleryViewController *)self.viewController);
-  if (!_moveToFacebook)
-  {
-    if (!vc.selectingImage)
-    {
-      [vc dismissIp0AndMoveToIp1FromSplashScreen];
-      _resignedActive = NO;
-    }
-  }
-  else
-  {
-    [vc.view bringSubviewToFront: vc.ip2];
-  }
+//  A1_V (vc, (SelleryViewController *)self.viewController);
+//  if (!_moveToFacebook)
+//  {
+//    if (!vc.selectingImage)
+//    {
+//      [vc dismissIp0AndMoveToIp1FromSplashScreen];
+//      _resignedActive = NO;
+//    }
+//  }
+//  else
+//  {
+//    [vc.view bringSubviewToFront: vc.ip2];
+//  }
 }
 
 - (void)applicationDidBecomeActive: (UIApplication *)application
@@ -162,13 +165,13 @@ static NSString* kAppId = @"104504556303736";
   /*
    Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
    */
-  if (_resignedActive)
-  {
-    _resignedActive = NO;
-    A1_V (vc, (SelleryViewController *)self.viewController);
-    vc.ip0.alpha = 1.0f;
-    [vc.view sendSubviewToBack: vc.ip0];
-  }
+//  if (_resignedActive)
+//  {
+//    _resignedActive = NO;
+//    A1_V (vc, (SelleryViewController *)self.viewController);
+//    vc.ip0.alpha = 1.0f;
+//    [vc.view sendSubviewToBack: vc.ip0];
+//  }
 #if 0
   A1_ATV (date, NSDate);
   A1_ATV (timeIntervalSince1970, date);
