@@ -18,6 +18,7 @@
 		A74AF7A1137152AD00655A84 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = A74AF79D1371529E00655A84 /* UIImage+Resize.m */; };
 		A74AF7A2137152AD00655A84 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = A74AF79F137152A700655A84 /* UIImage+RoundedCorner.m */; };
 		A76682E21373F7EC00AFDB8E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76682E11373F7EC00AFDB8E /* CoreLocation.framework */; };
+		A787BBCB1378011B0028B22E /* Default-fb104504556303736.png in Resources */ = {isa = PBXBuildFile; fileRef = A787BBCA1378011B0028B22E /* Default-fb104504556303736.png */; };
 		A799BFBB1361AB0D00918E7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A799BFBA1361AB0D00918E7B /* UIKit.framework */; };
 		A799BFBD1361AB0D00918E7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A799BFBC1361AB0D00918E7B /* Foundation.framework */; };
 		A799BFBF1361AB0D00918E7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A799BFBE1361AB0D00918E7B /* CoreGraphics.framework */; };
@@ -85,6 +86,7 @@
 		A74AF79E137152A200655A84 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		A74AF79F137152A700655A84 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		A76682E11373F7EC00AFDB8E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A787BBCA1378011B0028B22E /* Default-fb104504556303736.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-fb104504556303736.png"; sourceTree = SOURCE_ROOT; };
 		A799BFB61361AB0D00918E7B /* Sellery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sellery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A799BFBA1361AB0D00918E7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A799BFBC1361AB0D00918E7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -592,6 +594,7 @@
 				A71736CF1372909D00E3EBD4 /* iP_5.png */,
 				A71736D1137290A600E3EBD4 /* iP_2_presseddown.png */,
 				A71736D51372915500E3EBD4 /* Default.png */,
+				A787BBCA1378011B0028B22E /* Default-fb104504556303736.png */,
 				A7A9752813696CD900C42386 /* 4gicon.png */,
 				A7A9752613696CD000C42386 /* 3gicon.png */,
 				A7497DDE1368B86F00AEDD84 /* endpointad.png */,
@@ -1434,6 +1437,7 @@
 				A71736D2137290A600E3EBD4 /* iP_2_presseddown.png in Resources */,
 				A71736D61372915500E3EBD4 /* Default.png in Resources */,
 				A71736D81372964D00E3EBD4 /* addphoto_pressed.png in Resources */,
+				A787BBCB1378011B0028B22E /* Default-fb104504556303736.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

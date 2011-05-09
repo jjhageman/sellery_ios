@@ -31,7 +31,7 @@
 {
   UIView *_ip0;
   UIView *_ipInvisible;
-  IBOutlet UIView *_ip1;
+  UIView *_ip1;
   IBOutlet UIView *_ip2;
   IBOutlet UIView *_ip3;
   IBOutlet UITextView *_textView;
@@ -53,6 +53,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *price;
 @property (nonatomic, retain) FBLoginButton *fbLoginButton;
 @property (nonatomic, retain) IBOutlet UIView *ip0;
+@property (nonatomic, retain) IBOutlet UIView *ip1;
 @property (nonatomic, retain) IBOutlet UIView *ip2;
 @property (nonatomic, retain) IBOutlet UIView *ipInvisible;
 @property (nonatomic, retain) IBOutlet UIButton *selleryButton;
@@ -73,6 +74,7 @@ A1_PP_PROPS (SelleryViewControllerNF);
 - (void)uploadFinished: (NSDictionary *)response;
 - (void)networkError: (NSError *)error;
 - (void)moveToIp1;
+- (void)moveToIp1WithoutAnimations;
 - (void)dismissIp0AndMoveToIp1FromSplashScreen;
 
 @end

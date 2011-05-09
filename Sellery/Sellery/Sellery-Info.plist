@@ -16,7 +16,7 @@
 		<string>4gicon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.selleryapp</string>
+	<string>com.selleyapp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -46,11 +46,11 @@
 	<string>MainWindow</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
+	<key>UILaunchImageFile</key>
+	<string>Default.png</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>UILaunchImageFile</key>
-	<string>Default.png</string>
 </dict>
 </plist>

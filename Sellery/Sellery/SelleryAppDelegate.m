@@ -144,10 +144,19 @@ static NSString* kAppId = @"104504556303736";
   /*
    Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
    */
-  
+
+//  A1_V (vc, (SelleryViewController *)self.viewController);
+//  A1_ATV (state, vc);
+//  
+//  if (3 == state)
+//  {
+//    [vc moveToIp1WithoutAnimations];
+//  }
+
 //  A1_V (vc, (SelleryViewController *)self.viewController);
 //  if (!_moveToFacebook)
 //  {
+//    [vc.view bringSubviewToFront: vc.ip1];
 //    if (!vc.selectingImage)
 //    {
 //      [vc dismissIp0AndMoveToIp1FromSplashScreen];

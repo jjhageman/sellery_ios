@@ -25,6 +25,7 @@
 @synthesize fbLoginButton = _fbLoginButton;
 @synthesize firstImageView = _firstImageView;
 @synthesize ip0 = _ip0;
+@synthesize ip1 = _ip1;
 @synthesize ip2 = _ip2;
 @synthesize ipInvisible = _ipInvisible;
 @synthesize selleryButton = _selleryButton;
@@ -280,6 +281,24 @@
                   completion: ^ (BOOL finished){
                     [self.view sendSubviewToBack: topMostView];
                   }];
+}
+
+- (void)moveToIp1WithoutAnimations;
+{
+  _state = 1;
+  
+  self.image = nil;
+  self.salary = nil;
+  self.imageUploadResponse = nil;
+  self.itemUploadResponse = nil;
+  
+  [_firstImageView setImage: [UIImage imageNamed: @"addphoto.png"]];
+  [_photo setImage: [UIImage imageNamed: @"addphoto_pressed.png"]
+          forState: UIControlStateHighlighted];
+  [_price setText: @"Price it"];
+  [_price setTextColor: [UIColor lightGrayColor]];
+  
+  [self.view bringSubviewToFront: _ip1];
 }
 
 - (void)moveToIp1FromDescription;
