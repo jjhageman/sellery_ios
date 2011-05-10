@@ -120,6 +120,19 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
 //  sleep (3);
+  
+  A1_V (vc, (SelleryViewController *)self.viewController);
+  A1_ATV (state, vc);
+  A1_ATV (fbLoginButton, vc);
+  A1_ATV (isLoggedIn, fbLoginButton);
+  if (state != 2)
+  {
+    return NO;
+  }
+  if (isLoggedIn)
+  {
+    return NO;
+  }
 
   A1_CUSTOM_NV (UIActionSheet, downloadingSheet, initWithTitle: @"Requesting Facebook data, please wait\n\n\n"
                 delegate: nil

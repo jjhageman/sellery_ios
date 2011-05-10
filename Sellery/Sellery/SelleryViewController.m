@@ -692,6 +692,13 @@
   // Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
   
+  A1_CUSTOM_NV (UIAlertView, alertView, initWithTitle: @"Sellery"
+                                              message: @"App is running under low memory conditions"
+                                             delegate: self
+                                    cancelButtonTitle: nil
+                                    otherButtonTitles: @"OK", nil);
+  [alertView show];
+  
   // Release any cached data, images, etc that aren't in use.
 }
 
@@ -700,12 +707,12 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-  _state = 0;
+  // _state = 0;
   
   A1_V (userDefaults, A1_USER_DEFAULTS);
   A1_V (uid, [userDefaults objectForKey: @"id"])
   A1_V (accessToken, [userDefaults objectForKey: @"accessToken"])
-  A1_V (appDelegate, (SelleryAppDelegate *)A1_APP_DELEGATE);
+//  A1_V (appDelegate, (SelleryAppDelegate *)A1_APP_DELEGATE);
 
   if (nil == uid || nil == accessToken)  
   {
@@ -720,7 +727,24 @@
 
 //  if (!appDelegate.moveToFacebook)
   {
-    [self dismissIp0AndMoveToIp1FromSplashScreen];
+    switch (_state)
+    {
+      case 0:
+        [self dismissIp0AndMoveToIp1FromSplashScreen];
+        break;
+      case 1:
+        [self.view bringSubviewToFront: _ip1];
+        break;
+      case 2:
+        [self.view bringSubviewToFront: _ip2];
+        break;
+      case 3:
+        [self.view bringSubviewToFront: _ip3];
+        break;
+        
+      default:
+        break;
+    }
   }
 //  else
 //  {
