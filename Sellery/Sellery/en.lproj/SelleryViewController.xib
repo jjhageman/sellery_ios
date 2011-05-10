@@ -547,7 +547,7 @@
 								<string key="NSFrame">{{0, -20}, {320, 480}}</string>
 								<reference key="NSSuperview" ref="246081192"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="533946127"/>
+								<reference key="NSNextKeyView" ref="802982707"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -557,16 +557,17 @@
 							</object>
 							<object class="IBUILabel" id="802982707">
 								<reference key="NSNextResponder" ref="246081192"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{139, 432}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="246081192"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="533946127"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">RC7</string>
+								<string key="IBUIText">RC8</string>
 								<reference key="IBUIFont" ref="644516728"/>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
