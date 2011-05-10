@@ -692,12 +692,12 @@
   // Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
   
-  A1_CUSTOM_NV (UIAlertView, alertView, initWithTitle: @"Sellery"
-                                              message: @"App is running under low memory conditions"
-                                             delegate: self
-                                    cancelButtonTitle: nil
-                                    otherButtonTitles: @"OK", nil);
-  [alertView show];
+//  A1_CUSTOM_NV (UIAlertView, alertView, initWithTitle: @"Sellery"
+//                                              message: @"App is running under low memory conditions"
+//                                             delegate: self
+//                                    cancelButtonTitle: nil
+//                                    otherButtonTitles: @"OK", nil);
+//  [alertView show];
   
   // Release any cached data, images, etc that aren't in use.
 }
