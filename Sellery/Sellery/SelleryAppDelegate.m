@@ -38,6 +38,8 @@ static NSString* kAppId = @"104504556303736";
   
   A1_ATV (coordinate, newLocation);
   _location = coordinate;
+  
+  _zipCodeRequired = NO;
 }
 
 - (void)locationManager: (CLLocationManager *)manager
@@ -45,6 +47,8 @@ static NSString* kAppId = @"104504556303736";
 {
   A1_ATV (description, error);
   NSLog (@"Error: %@", description);
+  
+  _zipCodeRequired = YES;
 }
 
 - (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions: (NSDictionary *)launchOptions

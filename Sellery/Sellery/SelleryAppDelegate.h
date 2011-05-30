@@ -32,6 +32,7 @@
   ((location) ((assign)) ((CLLocationCoordinate2D))) \
   ((resignedActive) ((assign)) ((BOOL))) \
   ((uploading) ((assign)) ((BOOL))) \
+  ((zipCodeRequired) ((assign)) ((BOOL))) \
 
 @interface SelleryAppDelegate : NSObject <UIApplicationDelegate, SelleryAppRESTfulDelegate, CLLocationManagerDelegate>
 {

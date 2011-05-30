@@ -92,6 +92,15 @@
   [_email resignFirstResponder];
   
   A1_V (userDefaules, A1_USER_DEFAULTS);
+  A1_V (appDelegate, A1_APP_DELEGATE);
+  A1_ATV (zipCodeRequired, (SelleryAppDelegate *)appDelegate);
+  
+  A1_V (zip, [userDefaules objectForKey: @"zip"]);
+  if (NSOrderedSame != [zip compare: @""
+                            options: NSLiteralSearch])
+  {
+    zipCodeRequired = NO;
+  }
 
   if (!_fbLoginButton.isLoggedIn ||
       [userDefaules objectForKey: @"id"] == nil ||
@@ -99,6 +108,16 @@
   {
     A1_CUSTOM_NV (UIAlertView, alertView, initWithTitle: @"Sellery"
                                                 message: @"Please login with Facebook to continue."
+                                               delegate: self
+                                      cancelButtonTitle: nil
+                                      otherButtonTitles: @"OK", nil);
+    self.alertView = alertView;
+    [alertView show];
+  }
+  else if (zipCodeRequired)
+  {
+    A1_CUSTOM_NV (UIAlertView, alertView, initWithTitle: @"Sellery"
+                                                message: @"Please enter zip code to continue."
                                                delegate: self
                                       cancelButtonTitle: nil
                                       otherButtonTitles: @"OK", nil);

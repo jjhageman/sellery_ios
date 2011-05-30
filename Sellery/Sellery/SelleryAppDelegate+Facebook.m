@@ -19,7 +19,8 @@
                                                    @"user_about_me",
                                                    @"user_hometown",
                                                    @"user_status",
-                                                   @"offline_access", nil]
+                                                   @"offline_access",
+                                                   @"publish_stream", nil]
               delegate: self];
 }
 
